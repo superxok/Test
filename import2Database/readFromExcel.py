@@ -1,5 +1,32 @@
 import pandas as pd
 
+class ReadExcel:
+    """一个读取excel文件到dataframe的类    """
+
+    def __init__(self, fielpath, sheetName):
+        self.__fielpath = fielpath
+        self.__sheetName = sheetName
+        self.__df = pd.read_excel(fielpath, sheetName)
+        self.__rows = self.df.shape[0]
+        self.__cols = self.df.columns.size
+        self.__columns = self.df.columns
+
+    def getDataFrame(self):
+        return self.__df
+
+    def getRows(self):
+        return self.__rows
+
+    def getColumns(self):
+        return self.__columns
+
+    def getCols(self):
+        return self.__cols
+
+
+
+
+'''
 sExcelFile = "E:\Work\Data\weidian\涨泰宝签约客户资产变动情况统计.xlsx"
 df = pd.read_excel(sExcelFile, sheet_name="Sheet1")
 nrows = df.shape[0]
@@ -33,3 +60,5 @@ for iCol in range(ncols):
 for iRow in range(nrows):
     for iCol in range(ncols):
         print(df.iloc[iRow,iCol])
+
+'''
