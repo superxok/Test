@@ -3,13 +3,15 @@ import pandas as pd
 class ReadExcel:
     """一个读取excel文件到dataframe的类    """
 
-    def __init__(self, fielpath, sheetName):
+    def __init__(self, fielpath, sheetName=0, skipRows=0):
         self.__fielpath = fielpath
         self.__sheetName = sheetName
-        self.__df = pd.read_excel(fielpath, sheetName)
-        self.__rows = self.df.shape[0]
-        self.__cols = self.df.columns.size
-        self.__columns = self.df.columns
+        self.__df = pd.read_excel(fielpath, sheet_name=sheetName, skiprows=skipRows)
+
+        self.__rows = self.__df.shape[0]
+        self.__cols = self.__df.columns.size
+        self.__columns = self.__df.columns
+
 
     def getDataFrame(self):
         return self.__df

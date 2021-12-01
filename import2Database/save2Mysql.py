@@ -11,16 +11,23 @@ class MySqlConn:
         self.__ip = ip
         self.__port =port
         self.__db = db
+        self.__strConn = 'mysql+pymysql://{}:{}@{}:{}/{}'.format(self.__username, self.__password, self.__ip, self.__port, self.__db)
+        self.__engine = create_engine(self.__strConn)
 
     def getConnStr(self):
-        strConn = 'mysql+pymysql://{}:{}@{}:{}/{}', format(self.__username, self.__password, self.__ip, self.__port)
-        return strConn
-
-
-    self.engine = create_engine(strConn)
-
+        return self.__strConn
 
     # 写入mysql数据库
-    def to_sql(selfself, sql):
-        df =
+    def to_sql(self, sql):
+        pass
+
+    #写入mysql数据库
+    def to_sql(self, tableName, df):
+        df.to_sql(tableName, con=self.__engine, if_exists="replace", index=False)
+        print("数据同步到mysql完毕, 表名为: {}".format(tableName))
+
+
+
+
+
 
